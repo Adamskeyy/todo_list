@@ -1,14 +1,13 @@
 import "./App.css";
+import Button from './components/Button/Button'
+import TaskList from './components/TaskList/TaskList'
 
 function App() {
   return (
     <div className="App">
-      <h1>TO DO LIST_</h1>
-      <button class="btn">
-        <span class="btn__content">Create new task_</span>
-        <span class="btn__glitch"></span>
-        <span class="btn__label">r25</span>
-      </button>
+      <h1>TO DO LIST</h1>
+      <Button />
+      <TaskList />
     </div>
   );
 }
