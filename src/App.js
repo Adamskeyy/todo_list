@@ -44,7 +44,11 @@ function App() {
 
   return (
     <div className="App">
-      <h1>TO DO LIST</h1>
+      <h1 className="header__glitch">
+        <span aria-hidden="true">TO DO LIST</span>
+        TO DO LIST
+        <span aria-hidden="true">TO DO LIST</span>
+      </h1>
       <Form addTask={addTask} />
       <TaskList
         tasks={tasks}
