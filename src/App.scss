@@ -1,8 +1,7 @@
 *,
 *::before,
 *::after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -22,19 +21,11 @@
 
 .App {
   background-color: var(--yellow-color);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   min-height: 100vh;
 }
-
 h1 {
   color: var(--black-color);
   text-shadow: 2px 2px 1px var(--blue-color);
@@ -44,4 +35,3 @@ h1 {
   word-spacing: 1em;
   margin: 0.5em auto;
 }
-/*# sourceMappingURL=App.css.map */

@@ -1,0 +1,24 @@
+.task__list {
+  width: 60%;
+  list-style: none;
+  font-family: Tomorrow, sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--black-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.task__item {
+  margin: 0.15em auto;
+  padding-left: 0.5em;
+  width: 80%;
+  height: 3em;
+  clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
+  border: 1px solid var(--black-color);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
