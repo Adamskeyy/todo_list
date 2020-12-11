@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/todo_list/static/css/main.6488599d.chunk.css",
+    "main.css": "/todo_list/static/css/main.91fcb207.chunk.css",
     "main.js": "/todo_list/static/js/main.b3b4864a.chunk.js",
     "main.js.map": "/todo_list/static/js/main.b3b4864a.chunk.js.map",
     "runtime-main.js": "/todo_list/static/js/runtime-main.64dd1d97.js",
@@ -8,14 +8,14 @@
     "static/js/2.3afec829.chunk.js": "/todo_list/static/js/2.3afec829.chunk.js",
     "static/js/2.3afec829.chunk.js.map": "/todo_list/static/js/2.3afec829.chunk.js.map",
     "index.html": "/todo_list/index.html",
-    "static/css/main.6488599d.chunk.css.map": "/todo_list/static/css/main.6488599d.chunk.css.map",
+    "static/css/main.91fcb207.chunk.css.map": "/todo_list/static/css/main.91fcb207.chunk.css.map",
     "static/js/2.3afec829.chunk.js.LICENSE.txt": "/todo_list/static/js/2.3afec829.chunk.js.LICENSE.txt",
     "static/media/App.css": "/todo_list/static/media/Cyberpunk.ce09ddf4.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.64dd1d97.js",
     "static/js/2.3afec829.chunk.js",
-    "static/css/main.6488599d.chunk.css",
+    "static/css/main.91fcb207.chunk.css",
     "static/js/main.b3b4864a.chunk.js"
   ]
 }
