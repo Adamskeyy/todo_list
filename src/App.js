@@ -23,7 +23,7 @@ function App() {
     const newTask = {
       id: uuid_v4(),
       name: task,
-      completed: true,
+      completed: false,
     };
     setTasks([...tasks, newTask]);
   };
