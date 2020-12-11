@@ -1,5 +1,6 @@
 .task__list {
-  width: 60%;
+  width: 50%;
+  min-width: 230px;
   list-style: none;
   font-family: Tomorrow, sans-serif;
   font-size: 0.85rem;
@@ -18,22 +19,5 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.task__item {
-  margin: 0.15em auto;
-  padding-left: 0.5em;
-  width: 80%;
-  height: 3em;
-  -webkit-clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
-          clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
-  border: 1px solid var(--black-color);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  cursor: pointer;
 }
 /*# sourceMappingURL=TaskList.css.map */

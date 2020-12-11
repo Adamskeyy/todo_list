@@ -1,17 +1,18 @@
 import React from "react";
 import "./TaskList.css";
+import Task from "./Task/Task";
 
-const TaskList = ({ tasks, removeTask }) => {
+const TaskList = ({ tasks, removeTask, toggleCompletion }) => {
   return (
     <ul className="task__list">
-      {tasks.map((task) => (
-        <li
-          className="task__item"
+      {tasks.map((task, index) => (
+        <Task
           key={task.id}
-          onClick={() => removeTask(task.id)}
-        >
-          {task.name}
-        </li>
+          task={task}
+          removeTask={removeTask}
+          toggleCompletion={toggleCompletion}
+          idx={index}
+        />
       ))}
     </ul>
   );

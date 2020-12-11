@@ -11,6 +11,7 @@ const Form = ({ addTask }) => {
     e.preventDefault();
     if (task) {
       addTask(task);
+      setTask("");
     }
   };
 
@@ -18,6 +19,7 @@ const Form = ({ addTask }) => {
     <form autoComplete="off" onSubmit={submitTask} className="form__control">
       <label htmlFor="input" className="form__input">
         <input
+          required
           type="text"
           id="input"
           placeholder="&nbsp;"
