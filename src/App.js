@@ -4,6 +4,7 @@ import { v4 as uuid_v4 } from "uuid";
 import "./App.css";
 import Form from "./components/Form/Form";
 import TaskList from "./components/TaskList/TaskList";
+import Search from "./components/Search/Search";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -42,6 +43,13 @@ function App() {
     setTasks(updatedTasks);
   };
 
+  const searchTask = (searchInput) => {
+    console.log(searchInput);
+  };
+
+  const searchTab =
+    tasks.length > 0 ? <Search searchTask={searchTask} /> : null;
+
   return (
     <div className="App">
       <h1 className="header__glitch">
@@ -50,6 +58,7 @@ function App() {
         <span aria-hidden="true">TO DO LIST</span>
       </h1>
       <Form addTask={addTask} />
+      {searchTab}
       <TaskList
         tasks={tasks}
         removeTask={deleteTask}
