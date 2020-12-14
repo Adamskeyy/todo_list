@@ -1,17 +1,25 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./Search.css";
 
-const Search = ({ searchTask }) => {
-  const [searchInput, setSearchInput] = useState("");
+const Search = React.memo(({ tasks, displayFilteredTasks }) => {
+  const [enteredFilter, setEnteredFilter] = useState("");
 
-  const findTask = (val) => {
-    setSearchInput(val);
-    if (searchInput) {
-      searchTask(searchInput);
+  const filteredTasks = tasks.filter((task) => {
+    return task.name.toLocaleLowerCase().includes(enteredFilter);
+  });
+
+  const itemsToDisplay = enteredFilter && filteredTasks;
+
+  useEffect(() => {
+    if (enteredFilter) {
+      displayFilteredTasks(itemsToDisplay);
+    } else {
+      displayFilteredTasks(tasks);
     }
-  };
+  }, [enteredFilter, displayFilteredTasks, itemsToDisplay, tasks]);
+
   return (
     <form
       autoComplete="off"
@@ -20,15 +28,15 @@ const Search = ({ searchTask }) => {
         e.preventDefault();
       }}
     >
-      <label htmlFor="input" className="form__input">
+      <label htmlFor="input search" className="form__input">
         <input
           required
           type="text"
-          id="input"
+          id="input search"
           placeholder="&nbsp;"
-          value={searchInput}
+          value={enteredFilter}
           onChange={(e) => {
-            findTask(e.target.value);
+            setEnteredFilter(e.target.value.toLocaleLowerCase());
           }}
         />
         <span className="label">Find task...</span>
@@ -36,6 +44,6 @@ const Search = ({ searchTask }) => {
       </label>
     </form>
   );
-};
+});
 
 export default Search;

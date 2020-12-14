@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { v4 as uuid_v4 } from "uuid";
 
 import "./App.css";
@@ -8,6 +8,7 @@ import Search from "./components/Search/Search";
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [filteredTasks, setFilteredTasks] = useState([]);
 
   useEffect(() => {
     const tasksFromLocalStorage = localStorage.getItem("tasks");
@@ -43,12 +44,17 @@ function App() {
     setTasks(updatedTasks);
   };
 
-  const searchTask = (searchInput) => {
-    console.log(searchInput);
-  };
+  const displayFilteredTasks = useCallback(
+    (filteredTasks) => {
+      setFilteredTasks(filteredTasks);
+    },
+    [setFilteredTasks]
+  );
 
   const searchTab =
-    tasks.length > 0 ? <Search searchTask={searchTask} /> : null;
+    tasks.length > 1 ? (
+      <Search tasks={tasks} displayFilteredTasks={displayFilteredTasks} />
+    ) : null;
 
   return (
     <div className="App">
@@ -60,7 +66,7 @@ function App() {
       <Form addTask={addTask} />
       {searchTab}
       <TaskList
-        tasks={tasks}
+        tasks={filteredTasks}
         removeTask={deleteTask}
         toggleCompletion={toggleTask}
       />
