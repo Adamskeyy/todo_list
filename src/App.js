@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuid_v4 } from "uuid";
 
 import "./App.css";
@@ -8,7 +8,7 @@ import Search from "./components/Search/Search";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [filteredTasks, setFilteredTasks] = useState([]);
+  const [enteredFilter, setEnteredFilter] = useState("");
 
   useEffect(() => {
     const tasksFromLocalStorage = localStorage.getItem("tasks");
@@ -17,8 +17,15 @@ function App() {
     }
   }, []);
 
+  const filteredTasks = tasks.filter((task) => {
+    return task.name.toLocaleLowerCase().includes(enteredFilter);
+  });
+
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
+    if (!tasks.length) {
+      setEnteredFilter("");
+    }
   }, [tasks]);
 
   const addTask = (task) => {
@@ -44,17 +51,17 @@ function App() {
     setTasks(updatedTasks);
   };
 
-  const displayFilteredTasks = useCallback(
-    (filteredTasks) => {
-      setFilteredTasks(filteredTasks);
-    },
-    [setFilteredTasks]
-  );
+  let itemsToDisplay = enteredFilter ? filteredTasks : tasks;
 
-  const searchTab =
-    tasks.length > 1 ? (
-      <Search tasks={tasks} displayFilteredTasks={displayFilteredTasks} />
-    ) : null;
+  let searchTab;
+  if (tasks.length > 0) {
+    searchTab = (
+      <Search
+        enteredFilter={enteredFilter}
+        displayFilteredTasks={(filter) => setEnteredFilter(filter)}
+      />
+    );
+  }
 
   return (
     <div className="App">
@@ -65,11 +72,15 @@ function App() {
       </h1>
       <Form addTask={addTask} />
       {searchTab}
-      <TaskList
-        tasks={filteredTasks}
-        removeTask={deleteTask}
-        toggleCompletion={toggleTask}
-      />
+      {!filteredTasks.length ? (
+        <div>No matches, adjust filter.</div>
+      ) : (
+        <TaskList
+          tasks={itemsToDisplay}
+          removeTask={deleteTask}
+          toggleCompletion={toggleTask}
+        />
+      )}
     </div>
   );
 }
