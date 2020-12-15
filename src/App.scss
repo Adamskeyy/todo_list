@@ -37,6 +37,7 @@
   word-spacing: 1em;
   margin: 0.5em auto;
   position: relative;
+  overflow: hidden;
 
   text-shadow: 0.05em 0 0 var(--red-color),
     -0.025em -0.05em 0 rgba(0, 255, 0, 0.75), 0.025em 0.05em 0 var(--blue-color);
