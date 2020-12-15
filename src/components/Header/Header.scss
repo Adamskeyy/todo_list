@@ -12,7 +12,7 @@
   text-shadow: 0.05em 0 0 var(--red-color),
     -0.025em -0.05em 0 rgba(0, 255, 0, 0.75), 0.025em 0.05em 0 var(--blue-color);
 
-  animation: glitch 500ms infinite;
+  // animation: glitch 500ms infinite;
 
   span {
     position: absolute;
@@ -20,14 +20,14 @@
     left: 0;
 
     &:first-child {
-      animation: glitch 750ms infinite;
+      // animation: glitch 750ms infinite;
       clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
       transform: translate(-0.025em, -0.0125em);
       opacity: 0.8;
     }
 
     &:last-child {
-      animation: glitch 475ms infinite;
+      // animation: glitch 475ms infinite;
       clip-path: polygon(0 80%, 100% 20%, 100% 100%, 0 100%);
       transform: translate(0.0125em, 0.025em);
       opacity: 0.8;

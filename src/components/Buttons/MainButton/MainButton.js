@@ -1,20 +1,9 @@
 import React from "react";
 import "./MainButton.css";
 
-const Button = ({btnContent, labelContent, typeOfBtn, clicked, defaultActiveFilter}) => {
-
-  let btnClasses = typeOfBtn;
-  const buttonClicked = () => {
-    clicked()
-    if (defaultActiveFilter === btnContent) {
-      btnClasses = 'btn btn--secondary active'
-    }
-    console.log(btnClasses)
-  }
-  
-
+const MainButton = ({ btnContent, labelContent, typeOfBtn }) => {
   return (
-    <button type="submit" className={btnClasses} onClick={buttonClicked}>
+    <button type="submit" className={typeOfBtn}>
       <span className="btn__content">{btnContent}</span>
       <span className="btn__glitch"></span>
       <span className="btn__label">{labelContent}</span>
@@ -22,4 +11,4 @@ const Button = ({btnContent, labelContent, typeOfBtn, clicked, defaultActiveFilt
   );
 };
 
-export default Button;
+export default MainButton;
