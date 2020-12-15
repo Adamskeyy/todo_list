@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { v4 as uuid_v4 } from "uuid";
 
 import "./App.css";
+import Header from './components/Header/Header'
 import Form from "./components/Form/Form";
 import TaskList from "./components/TaskList/TaskList";
 import Search from "./components/Search/Search";
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  // const [tasksToShow, setTasksToShow] = useState('all')
   const [enteredFilter, setEnteredFilter] = useState("");
 
   useEffect(() => {
@@ -68,11 +70,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="header__glitch">
-        <span aria-hidden="true">TO DO LIST</span>
-        TO DO LIST
-        <span aria-hidden="true">TO DO LIST</span>
-      </h1>
+      <Header />
       <Form addTask={addTask} />
       {searchTab}
       {filterWarning}

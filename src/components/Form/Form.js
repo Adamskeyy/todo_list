@@ -31,7 +31,7 @@ const Form = ({ addTask }) => {
         <span className="label">Add the task samurai...</span>
         <span className="focus-bg"></span>
       </label>
-      <Button />
+      <Button btnContent='create new task' labelContent="r25" typeOfBtn="btn" />
     </form>
   );
 };

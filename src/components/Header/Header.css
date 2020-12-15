@@ -1,0 +1,108 @@
+.header__glitch {
+  color: var(--black-color);
+  text-align: center;
+  font-size: 3.2em;
+  font-family: Cyberpunk;
+  word-spacing: 1em;
+  margin: 0.5em auto;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0.05em 0 0 var(--red-color), -0.025em -0.05em 0 rgba(0, 255, 0, 0.75), 0.025em 0.05em 0 var(--blue-color);
+  -webkit-animation: glitch 500ms infinite;
+          animation: glitch 500ms infinite;
+  /* https://web.dev/prefers-reduced-motion/#(bonus)-forcing-reduced-motion-on-all-websites */
+}
+
+.header__glitch span {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.header__glitch span:first-child {
+  -webkit-animation: glitch 750ms infinite;
+          animation: glitch 750ms infinite;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+          clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  -webkit-transform: translate(-0.025em, -0.0125em);
+          transform: translate(-0.025em, -0.0125em);
+  opacity: 0.8;
+}
+
+.header__glitch span:last-child {
+  -webkit-animation: glitch 475ms infinite;
+          animation: glitch 475ms infinite;
+  -webkit-clip-path: polygon(0 80%, 100% 20%, 100% 100%, 0 100%);
+          clip-path: polygon(0 80%, 100% 20%, 100% 100%, 0 100%);
+  -webkit-transform: translate(0.0125em, 0.025em);
+          transform: translate(0.0125em, 0.025em);
+  opacity: 0.8;
+}
+
+@-webkit-keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 var(--red-color), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em 0.05em 0 var(--blue-color);
+  }
+  14% {
+    text-shadow: 0.05em 0 0 var(--red-color), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em 0.05em 0 var(--blue-color);
+  }
+  15% {
+    text-shadow: -0.05em -0.025em 0 var(--red-color), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0var --blue-color;
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 var(--red-color), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 var(--blue-color);
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 var(--red-color), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 var(--blue-color);
+  }
+  99% {
+    text-shadow: 0.025em 0.05em 0 var(--red-color), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 var(--blue-color);
+  }
+  100% {
+    text-shadow: -0.025em 0 0 var(--red-color), -0.025em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em -0.05em 0 var(--blue-color);
+  }
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 var(--red-color), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em 0.05em 0 var(--blue-color);
+  }
+  14% {
+    text-shadow: 0.05em 0 0 var(--red-color), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em 0.05em 0 var(--blue-color);
+  }
+  15% {
+    text-shadow: -0.05em -0.025em 0 var(--red-color), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0var --blue-color;
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 var(--red-color), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 var(--blue-color);
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 var(--red-color), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 var(--blue-color);
+  }
+  99% {
+    text-shadow: 0.025em 0.05em 0 var(--red-color), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 var(--blue-color);
+  }
+  100% {
+    text-shadow: -0.025em 0 0 var(--red-color), -0.025em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em -0.05em 0 var(--blue-color);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header__glitch *,
+  .header__glitch ::before,
+  .header__glitch ::after {
+    -webkit-animation-delay: -1ms !important;
+            animation-delay: -1ms !important;
+    -webkit-animation-duration: 1ms !important;
+            animation-duration: 1ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    -webkit-transition-duration: 0s !important;
+            transition-duration: 0s !important;
+    -webkit-transition-delay: 0s !important;
+            transition-delay: 0s !important;
+  }
+}
+/*# sourceMappingURL=Header.css.map */

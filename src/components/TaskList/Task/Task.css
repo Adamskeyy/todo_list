@@ -19,6 +19,10 @@
   outline: none;
 }
 
+.task__item.completed {
+  opacity: 0.5;
+}
+
 .task__item__content {
   display: -webkit-box;
   display: -ms-flexbox;

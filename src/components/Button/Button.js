@@ -1,12 +1,12 @@
 import React from "react";
 import "./Button.css";
 
-const Button = () => {
+const Button = ({btnContent, labelContent, typeOfBtn}) => {
   return (
-    <button type="submit" className="btn">
-      <span className="btn__content">Create new task_</span>
+    <button type="submit" className={typeOfBtn}>
+      <span className="btn__content">{btnContent}</span>
       <span className="btn__glitch"></span>
-      <span className="btn__label">r25</span>
+      <span className="btn__label">{labelContent}</span>
     </button>
   );
 };
