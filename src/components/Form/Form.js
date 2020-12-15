@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-import Button from "../Button/Button";
+import MainButton from "../Buttons/MainButton/MainButton";
 import "./Form.css";
 
 const Form = ({ addTask }) => {
@@ -31,7 +31,7 @@ const Form = ({ addTask }) => {
         <span className="label">Add the task samurai...</span>
         <span className="focus-bg"></span>
       </label>
-      <Button btnContent='create new task' labelContent="r25" typeOfBtn="btn" />
+      <MainButton btnContent='create new task' labelContent="r25" typeOfBtn="btn" />
     </form>
   );
 };

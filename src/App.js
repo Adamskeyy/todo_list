@@ -9,7 +9,7 @@ import Search from "./components/Search/Search";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  // const [tasksToShow, setTasksToShow] = useState('all')
+  const [defaultActiveFilter, setDefaultActiveFilter] = useState('all')
   const [enteredFilter, setEnteredFilter] = useState("");
 
   useEffect(() => {
@@ -59,6 +59,8 @@ function App() {
   if (tasks.length > 0) {
     searchTab = (
       <Search
+        defaultActiveFilter={defaultActiveFilter}
+        changeActiveFilter={filter => setDefaultActiveFilter(filter)}
         enteredFilter={enteredFilter}
         displayFilteredTasks={(filter) => setEnteredFilter(filter)}
       />
