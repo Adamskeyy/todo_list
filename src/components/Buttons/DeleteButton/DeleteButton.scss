@@ -173,10 +173,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .btn:hover .btn__glitch,
-  .btn:hover .btn__content::after,
-  .btn:focus .btn__glitch,
-  .btn:focus .btn__content::after {
+  .btn--delete:hover .btn__glitch,
+  .btn--delete:hover .btn__content::after,
+  .btn--delete:focus .btn__glitch,
+  .btn--delete:focus .btn__content::after {
     display: none;
     animation: none;
   }

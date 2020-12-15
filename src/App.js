@@ -48,7 +48,10 @@ const App = () => {
 
   // Delete selected tasks
   const deleteTasks = (selectedTasks) => {
-    console.log(selectedTasks);
+    const tasksLeft = [...tasks].filter(
+      (item) => !selectedTasks.some((other) => item.id === other.id)
+    );
+    setTasks(tasksLeft);
   };
 
   // Toggle completion state
@@ -89,9 +92,9 @@ const App = () => {
     );
   }
 
-  // Show warning message if there are no matches found through filters
-  if (!itemsToDisplay.length && enteredFilter) {
-    filterWarning = <div>No matches found</div>;
+  // Show warning message if there are no matches found through filters and there are still tasks to display with different filters
+  if (!itemsToDisplay.length && tasks.length) {
+    filterWarning = <p>No matches found</p>;
   }
 
   // Render delete button if there are any selected tasks
