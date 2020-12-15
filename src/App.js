@@ -53,7 +53,7 @@ function App() {
 
   let itemsToDisplay = enteredFilter ? filteredTasks : tasks;
 
-  let searchTab;
+  let searchTab, filterWarning;
   if (tasks.length > 0) {
     searchTab = (
       <Search
@@ -61,6 +61,9 @@ function App() {
         displayFilteredTasks={(filter) => setEnteredFilter(filter)}
       />
     );
+  }
+  if (filteredTasks.length === 0 && enteredFilter) {
+    filterWarning = <div>No matches found</div>;
   }
 
   return (
@@ -72,15 +75,12 @@ function App() {
       </h1>
       <Form addTask={addTask} />
       {searchTab}
-      {!filteredTasks.length ? (
-        <div>No matches, adjust filter.</div>
-      ) : (
-        <TaskList
-          tasks={itemsToDisplay}
-          removeTask={deleteTask}
-          toggleCompletion={toggleTask}
-        />
-      )}
+      {filterWarning}
+      <TaskList
+        tasks={itemsToDisplay}
+        removeTask={deleteTask}
+        toggleCompletion={toggleTask}
+      />
     </div>
   );
 }
