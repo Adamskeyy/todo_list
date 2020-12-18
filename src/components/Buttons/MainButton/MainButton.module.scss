@@ -1,4 +1,4 @@
-.btn--delete {
+.button {
   width: 230px;
   height: 60px;
   border: 0;
@@ -13,7 +13,7 @@
   color: var(--black-color);
   clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
 
-  .btn__content {
+  &__content {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,11 +22,10 @@
     left: 2px;
     right: 2px;
     bottom: 2px;
-    background-color: var(--blue-color);
     clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
   }
 
-  .btn__label {
+  &__label {
     font-size: 0.4rem;
     position: absolute;
     bottom: -1px;
@@ -37,23 +36,52 @@
     border-left: 1px solid var(--blue-color);
   }
 
-  .btn__glitch {
+  &__glitch {
     display: none;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--blue-color);
     filter: drop-shadow(-2px 3px #67e3f3) drop-shadow(-1px -3px #02d8f3)
       drop-shadow(2px 1px #02d8f3);
   }
 }
 
-.btn--delete:hover .btn__glitch,
-.btn--delete:hover .btn__content::after,
-.btn--delete:focus .btn__glitch,
-.btn--delete:focus .btn__content::after {
+.buttonBasic {
+  background-color: var(--black-color);
+  .button__content {
+    background-color: var(--yellow-color);
+  }
+
+  .button__glitch {
+    background-color: var(--yellow-color);
+  }
+}
+
+.buttonDelete {
+  background-color: var(--black-color);
+  .button__content {
+    background-color: var(--blue-color);
+  }
+
+  .button__glitch {
+    background-color: var(--blue-color);
+  }
+}
+
+.buttonDelete:hover .button__glitch,
+.buttonDelete:hover .button__content::after,
+.buttonDelete:focus .button__glitch,
+.buttonDelete:focus .button__content::after {
+  display: block;
+  animation: glitch-animation 2s linear 0s infinite;
+}
+
+.buttonBasic:hover .button__glitch,
+.buttonBasic:hover .button__content::after,
+.buttonBasic:focus .button__glitch,
+.buttonBasic:focus .button__content::after {
   display: block;
   animation: glitch-animation 2s linear 0s infinite;
 }
@@ -173,10 +201,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .btn--delete:hover .btn__glitch,
-  .btn--delete:hover .btn__content::after,
-  .btn--delete:focus .btn__glitch,
-  .btn--delete:focus .btn__content::after {
+  .button:hover .button__glitch,
+  .button:hover .button__content::after,
+  .button:focus .button__glitch,
+  .button:focus .button__content::after {
     display: none;
     animation: none;
   }

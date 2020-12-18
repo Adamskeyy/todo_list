@@ -7,19 +7,18 @@ const FilterButton = ({
   clicked,
   defaultActiveFilter,
 }) => {
-  let isBtnActive = "";
+  let filterBtnClasses = "filter__button",
+    filterBtnCntClasses = "filter__button__content";
   if (defaultActiveFilter === btnContent) {
-    isBtnActive = "active";
+    filterBtnClasses = "filter__button filter__button--active";
+    filterBtnCntClasses =
+      "filter__button__content filter__button__content--active";
   }
 
   return (
-    <button
-      type="submit"
-      className={`btn--secondary ${isBtnActive}`}
-      onClick={clicked}
-    >
-      <span className={`btn__content ${isBtnActive}`}>{btnContent}</span>
-      <span className="btn__label">{labelContent}</span>
+    <button type="submit" className={filterBtnClasses} onClick={clicked}>
+      <span className={filterBtnCntClasses}>{btnContent}</span>
+      <span className="filter__button__label">{labelContent}</span>
     </button>
   );
 };

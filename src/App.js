@@ -6,7 +6,7 @@ import Header from "./components/Header/Header";
 import Form from "./components/Form/Form";
 import TaskList from "./components/TaskList/TaskList";
 import Search from "./components/Search/Search";
-import DeleteButton from "./components/Buttons/DeleteButton/DeleteButton";
+import MainButton from "./components/Buttons/MainButton/MainButton";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -99,7 +99,8 @@ const App = () => {
 
   // Render delete button if there are any selected tasks
   deleteBtn = itemsToDisplay.length ? (
-    <DeleteButton
+    <MainButton
+      btnType="delete"
       btnContent="delete selected tasks_"
       labelContent="r29"
       clicked={() => deleteTasks(itemsToDisplay)}

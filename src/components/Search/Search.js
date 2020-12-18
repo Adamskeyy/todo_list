@@ -14,27 +14,27 @@ const Search = React.memo(
       <>
         <form
           autoComplete="off"
-          className="form__control"
+          className="form"
           onSubmit={(e) => {
             e.preventDefault();
           }}
         >
-          <label htmlFor="input search" className="form__input">
+          <label htmlFor="input search" className="form__label">
             <input
               required
               type="text"
-              id="input search"
+              className="form__input"
               placeholder="&nbsp;"
               value={enteredFilter}
               onChange={(e) => {
                 displayFilteredTasks(e.target.value.toLocaleLowerCase());
               }}
             />
-            <span className="label">Find task...</span>
-            <span className="focus-bg"></span>
+            <span className="form__spanLabel">Find task...</span>
+            <span className="form__focusBg"></span>
           </label>
         </form>
-        <div className="filter__buttons">
+        <div className="filter">
           <FilterButton
             btnContent="all"
             labelContent="r26"

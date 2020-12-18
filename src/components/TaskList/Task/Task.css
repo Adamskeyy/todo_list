@@ -19,7 +19,7 @@
   outline: none;
 }
 
-.task__item.completed {
+.task__item--completed {
   opacity: 0.5;
 }
 

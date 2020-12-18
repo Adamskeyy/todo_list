@@ -1,4 +1,4 @@
-.btn--secondary {
+.filter__button {
   width: 80px;
   height: 30px;
   border: 0;
@@ -15,15 +15,11 @@
           clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
 }
 
-.btn--secondary.active, .btn--secondary:hover {
+.filter__button--active, .filter__button:hover {
   color: var(--white-color);
 }
 
-.btn--secondary.active .btn__content, .btn--secondary:hover .btn__content {
-  background-color: var(--red-color);
-}
-
-.btn--secondary .btn__content {
+.filter__button__content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -43,11 +39,11 @@
           clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
 }
 
-.btn--secondary .btn__content.active {
+.filter__button__content--active, .filter__button__content:hover {
   background-color: var(--red-color);
 }
 
-.btn--secondary .btn__label {
+.filter__button__label {
   font-size: 0.4rem;
   position: absolute;
   bottom: -1px;

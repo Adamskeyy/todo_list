@@ -1,4 +1,4 @@
-.header__main {
+.header {
   color: var(--black-color);
   // text-shadow: 2px 2px 1px var(--blue-color);
   text-align: center;
@@ -14,7 +14,7 @@
 
   // animation: glitch 500ms infinite;
 
-  span {
+  &__span {
     position: absolute;
     top: 0;
     left: 0;

@@ -1,4 +1,4 @@
-.form__control {
+.form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8,7 +8,7 @@
           flex-direction: column;
 }
 
-.form__input {
+.form__label {
   position: relative;
   margin: 0 auto 1em;
   width: 100%;
@@ -18,36 +18,7 @@
   font-family: Tomorrow, sans-serif;
 }
 
-.form__input .label {
-  position: absolute;
-  top: 20px;
-  left: 12px;
-  font-size: 16px;
-  color: var(--black-color);
-  font-weight: 500;
-  -webkit-transform-origin: 0 0;
-          transform-origin: 0 0;
-  -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  pointer-events: none;
-}
-
-.form__input .focus-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  -webkit-transform: scaleX(0);
-          transform: scaleX(0);
-  -webkit-transform-origin: left;
-          transform-origin: left;
-}
-
-.form__input input {
+.form__input {
   -webkit-appearance: none;
   -moz-appearance: none;
        appearance: none;
@@ -66,35 +37,64 @@
   transition: all 0.15s ease;
 }
 
-.form__input input:hover {
+.form__input:hover {
   background: rgba(var(--blue-color), 0.04);
   -webkit-box-shadow: inset 0 -1px 0 rgba(var(--blue-color), 0.8);
           box-shadow: inset 0 -1px 0 rgba(var(--blue-color), 0.8);
 }
 
-.form__input input:not(:placeholder-shown) + .label {
+.form__input:not(:placeholder-shown) + .label {
   color: rgba(var(--blue-color), 0.5);
   -webkit-transform: translate3d(0, -12px, 0) scale(0.75);
           transform: translate3d(0, -12px, 0) scale(0.75);
 }
 
-.form__input input:focus {
+.form__input:focus {
   background: rgba(var(--black-color), 0.05);
   outline: none;
   -webkit-box-shadow: inset 0 -2px 0 var(--blue-color);
           box-shadow: inset 0 -2px 0 var(--blue-color);
 }
 
-.form__input input:focus + .label {
+.form__input:focus + .form__spanLabel {
   color: var(--black-color);
   -webkit-transform: translate3d(0, -12px, 0) scale(0.75);
           transform: translate3d(0, -12px, 0) scale(0.75);
 }
 
-.form__input input:focus + .focus-bg {
+.form__input:focus + .form__focusBg {
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
   -webkit-transition: all 0.1s ease;
   transition: all 0.1s ease;
+}
+
+.form__spanLabel {
+  position: absolute;
+  top: 20px;
+  left: 12px;
+  font-size: 16px;
+  color: var(--black-color);
+  font-weight: 500;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.form__focusBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: left;
+          transform-origin: left;
 }
 /*# sourceMappingURL=Form.css.map */

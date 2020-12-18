@@ -2,14 +2,13 @@ import React from "react";
 import "./Task.css";
 
 const Task = ({ task, removeTask, idx, toggleCompletion }) => {
-
   let completionStatusText, taskItemClasses;
   if (task.completed) {
-    completionStatusText = 'DONE'
-    taskItemClasses = 'task__item completed'
+    completionStatusText = "DONE";
+    taskItemClasses = "task__item task__item--completed";
   } else {
-    completionStatusText = 'ACTIVE'
-    taskItemClasses = 'task__item'
+    completionStatusText = "ACTIVE";
+    taskItemClasses = "task__item";
   }
 
   return (
@@ -18,7 +17,7 @@ const Task = ({ task, removeTask, idx, toggleCompletion }) => {
       <span className="task__item__label">{idx + 1}</span>
       <span className="task__item__controls">
         <span
-          className='task__item__controls__toggleCompletion'
+          className="task__item__controls__toggleCompletion"
           onClick={() => toggleCompletion(task.id)}
         >
           {completionStatusText}

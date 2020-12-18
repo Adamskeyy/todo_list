@@ -16,25 +16,25 @@ const Form = ({ addTask }) => {
   };
 
   return (
-    <form autoComplete="off" onSubmit={submitTask} className="form__control">
-      <label htmlFor="input" className="form__input">
+    <form autoComplete="off" onSubmit={submitTask} className="form">
+      <label htmlFor="input" className="form__label">
         <input
           required
           type="text"
-          id="input"
+          className="form__input"
           placeholder="&nbsp;"
           value={task}
           onChange={(e) => {
             setTask(e.target.value);
           }}
         />
-        <span className="label">Add the task samurai...</span>
-        <span className="focus-bg"></span>
+        <span className="form__spanLabel">Add the task samurai...</span>
+        <span className="form__focusBg"></span>
       </label>
       <MainButton
+        btnType="basic"
         btnContent="create new task_"
         labelContent="r25"
-        typeOfBtn="btn"
       />
     </form>
   );

@@ -1,41 +1,18 @@
-.form__control {
+.form {
   display: flex;
   flex-direction: column;
-}
 
-.form__input {
-  position: relative;
-  margin: 0 auto 1em;
-  width: 100%;
-  max-width: 280px;
-  border-radius: 3px;
-  overflow: hidden;
-  font-family: Tomorrow, sans-serif;
-
-  .label {
-    position: absolute;
-    top: 20px;
-    left: 12px;
-    font-size: 16px;
-    color: var(--black-color);
-    font-weight: 500;
-    transform-origin: 0 0;
-    transform: translate3d(0, 0, 0);
-    transition: all 0.2s ease;
-    pointer-events: none;
-  }
-  .focus-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
+  &__label {
+    position: relative;
+    margin: 0 auto 1em;
     width: 100%;
-    height: 100%;
-    z-index: -1;
-    transform: scaleX(0);
-    transform-origin: left;
+    max-width: 280px;
+    border-radius: 3px;
+    overflow: hidden;
+    font-family: Tomorrow, sans-serif;
   }
 
-  input {
+  &__input {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
@@ -65,14 +42,38 @@
       outline: none;
       box-shadow: inset 0 -2px 0 var(--blue-color);
 
-      + .label {
+      + .form__spanLabel {
         color: var(--black-color);
         transform: translate3d(0, -12px, 0) scale(0.75);
       }
-      + .focus-bg {
+      + .form__focusBg {
         transform: scaleX(1);
         transition: all 0.1s ease;
       }
     }
+  }
+
+  &__spanLabel {
+    position: absolute;
+    top: 20px;
+    left: 12px;
+    font-size: 16px;
+    color: var(--black-color);
+    font-weight: 500;
+    transform-origin: 0 0;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.2s ease;
+    pointer-events: none;
+  }
+
+  &__focusBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
   }
 }
