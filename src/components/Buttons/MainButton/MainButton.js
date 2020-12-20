@@ -1,22 +1,22 @@
 import React from "react";
-import classes from "./MainButton.module.css";
+import "./MainButton.css";
 
 const MainButton = ({ btnContent, labelContent, btnType, clicked }) => {
   let modifier;
   if (btnType === "delete") {
-    modifier = classes.buttonDelete;
+    modifier = "buttonDelete";
   } else {
-    modifier = classes.buttonBasic;
+    modifier = "buttonBasic";
   }
   return (
     <button
       type="submit"
-      className={`${classes.button} ${modifier}`}
+      className={`button ${modifier}`}
       onClick={btnType === "delete" ? clicked : undefined}
     >
-      <span className={classes.button__content}>{btnContent}</span>
-      <span className={classes.button__glitch}></span>
-      <span className={classes.button__label}>{labelContent}</span>
+      <span className="button__content">{btnContent}</span>
+      <span className="button__glitch"></span>
+      <span className="button__label">{labelContent}</span>
     </button>
   );
 };
