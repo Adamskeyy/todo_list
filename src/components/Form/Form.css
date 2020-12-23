@@ -43,14 +43,13 @@
           box-shadow: inset 0 -1px 0 rgba(var(--blue-color), 0.8);
 }
 
-.form__input:not(:placeholder-shown) + .label {
+.form__input:not(:placeholder-shown) + .form__spanLabel {
   color: rgba(var(--blue-color), 0.5);
   -webkit-transform: translate3d(0, -12px, 0) scale(0.75);
           transform: translate3d(0, -12px, 0) scale(0.75);
 }
 
 .form__input:focus {
-  background: rgba(var(--black-color), 0.05);
   outline: none;
   -webkit-box-shadow: inset 0 -2px 0 var(--blue-color);
           box-shadow: inset 0 -2px 0 var(--blue-color);
