@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
+import Input from "../Input/Input";
 import MainButton from "../Buttons/MainButton/MainButton";
 import "./Form.css";
 
@@ -17,7 +18,12 @@ const Form = ({ addTask }) => {
 
   return (
     <form autoComplete="off" onSubmit={submitTask} className="form">
-      <label htmlFor="input" className="form__label">
+      <Input
+        value={task}
+        changeHandler={setTask}
+        labelText="Add the task samurai..."
+      />
+      {/* <label htmlFor="input" className="form__label">
         <input
           required
           type="text"
@@ -30,7 +36,7 @@ const Form = ({ addTask }) => {
         />
         <span className="form__spanLabel">Add the task samurai...</span>
         <span className="form__focusBg"></span>
-      </label>
+      </label> */}
       <MainButton
         btnType="basic"
         btnContent="create new task_"

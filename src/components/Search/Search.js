@@ -1,5 +1,6 @@
 import React from "react";
 
+import Input from "../Input/Input";
 import "./Search.css";
 import FilterButton from "../Buttons/FilterButton/FilterButton";
 
@@ -19,7 +20,12 @@ const Search = React.memo(
             e.preventDefault();
           }}
         >
-          <label htmlFor="input search" className="form__label">
+          <Input
+            value={enteredFilter}
+            changeHandler={displayFilteredTasks}
+            labelText="Find task..."
+          />
+          {/* <label htmlFor="input search" className="form__label">
             <input
               required
               type="text"
@@ -32,7 +38,7 @@ const Search = React.memo(
             />
             <span className="form__spanLabel">Find task...</span>
             <span className="form__focusBg"></span>
-          </label>
+          </label> */}
         </form>
         <div className="filter">
           <FilterButton
