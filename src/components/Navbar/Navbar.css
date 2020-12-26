@@ -1,0 +1,27 @@
+.navigation {
+  min-width: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 2em;
+}
+
+.navigation__item {
+  color: var(--black-color);
+  text-decoration: none;
+}
+
+.navigation__item:hover {
+  color: var(--red-color);
+  text-decoration: none;
+}
+
+.navigation .active {
+  color: var(--red-color);
+}
+/*# sourceMappingURL=Navbar.css.map */

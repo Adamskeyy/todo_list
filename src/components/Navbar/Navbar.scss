@@ -1,0 +1,21 @@
+.navigation {
+  min-width: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 2em;
+
+  &__item {
+    color: var(--black-color);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--red-color);
+      text-decoration: none;
+    }
+  }
+
+  .active {
+    color: var(--red-color);
+  }
+}
