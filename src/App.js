@@ -5,6 +5,8 @@ import SignUp from "./components/Auth/SignUp/SignUp";
 import LogIn from "./components/Auth/LogIn/LogIn";
 import LogOut from "./components/Auth/LogOut/LogOut.js";
 import Profile from "./components/Profile/Profile.js";
+import UpdateProfile from "./components/UpdateProfile/UpdateProfile.js";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword.js";
 import Header from "./components/Header/Header";
 import TodoApp from "./containers/TodoApp/TodoApp";
 import AuthProvider from "./contexts/AuthContext";
@@ -34,9 +36,17 @@ const App = () => {
               component={SignUp}
             />
             <Route path={`${process.env.PUBLIC_URL}/login`} component={LogIn} />
+            <Route
+              path={`${process.env.PUBLIC_URL}/forgot-password`}
+              component={ForgotPassword}
+            />
             <PrivateRoute
               path={`${process.env.PUBLIC_URL}/profile`}
               component={Profile}
+            />
+            <PrivateRoute
+              path={`${process.env.PUBLIC_URL}/update-profile`}
+              component={UpdateProfile}
             />
             <PrivateRoute
               path={`${process.env.PUBLIC_URL}/logout`}

@@ -29,7 +29,7 @@ function Profile() {
             to={`${process.env.PUBLIC_URL}/update-profile`}
             className="btn btn-primary w-100 mt-3"
           >
-            Update
+            Update Profile
           </Link>
         </Card.Body>
       </Card>
