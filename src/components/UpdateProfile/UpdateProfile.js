@@ -43,7 +43,7 @@ function UpdateProfile() {
 
   return (
     <>
-      <Card style={{ maxWidth: "100%" }}>
+      <Card style={{ minWidth: "300px" }}>
         <Card.Body>
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
