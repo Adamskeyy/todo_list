@@ -14,7 +14,7 @@ function Navigation() {
         className="navigation__item"
         to={`${process.env.PUBLIC_URL}`}
       >
-        Home
+        Task List
       </NavLink>
       {currentUser ? (
         <>
