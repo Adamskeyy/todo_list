@@ -19,6 +19,10 @@
   color: var(--white-color);
 }
 
+.filter__button--active .filter__button__content, .filter__button:hover .filter__button__content {
+  background-color: red;
+}
+
 .filter__button__content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -37,10 +41,6 @@
   background-color: var(--yellow-color);
   -webkit-clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
           clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
-}
-
-.filter__button__content--active, .filter__button__content:hover {
-  background-color: var(--red-color);
 }
 
 .filter__button__label {

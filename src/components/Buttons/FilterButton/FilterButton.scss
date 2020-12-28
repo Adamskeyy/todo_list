@@ -16,6 +16,10 @@
   &--active,
   &:hover {
     color: var(--white-color);
+
+    .filter__button__content {
+      background-color: red;
+    }
   }
 
   &__content {
@@ -29,10 +33,6 @@
     bottom: 2px;
     background-color: var(--yellow-color);
     clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
-    &--active,
-    &:hover {
-      background-color: var(--red-color);
-    }
   }
 
   &__label {
