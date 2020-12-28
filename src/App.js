@@ -8,7 +8,8 @@ import Profile from "./components/Profile/Profile.js";
 import UpdateProfile from "./components/UpdateProfile/UpdateProfile.js";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword.js";
 import Header from "./components/Header/Header";
-import TodoApp from "./containers/TodoApp/TodoApp";
+// import TodoApp from "./containers/TodoApp/TodoApp";
+import TodoAppFB from "./containers/TodoApp/TodoAppFB";
 import AuthProvider from "./contexts/AuthContext";
 import {
   BrowserRouter as Router,
@@ -29,7 +30,7 @@ const App = () => {
             <PrivateRoute
               exact
               path={`${process.env.PUBLIC_URL}`}
-              component={TodoApp}
+              component={TodoAppFB}
             />
             <Route
               path={`${process.env.PUBLIC_URL}/signup`}
