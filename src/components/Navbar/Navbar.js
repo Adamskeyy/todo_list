@@ -9,15 +9,22 @@ function Navigation() {
   const { currentUser } = useAuth();
   return (
     <ul className="navigation">
-      <NavLink
+      {/* <NavLink
         exact
         className="navigation__item"
         to={`${process.env.PUBLIC_URL}`}
       >
         Task List
-      </NavLink>
+      </NavLink> */}
       {currentUser ? (
         <>
+          <NavLink
+            exact
+            className="navigation__item"
+            to={`${process.env.PUBLIC_URL}`}
+          >
+            Task List
+          </NavLink>
           <NavLink
             className="navigation__item"
             to={`${process.env.PUBLIC_URL}/profile`}
@@ -37,13 +44,13 @@ function Navigation() {
             className="navigation__item"
             to={`${process.env.PUBLIC_URL}/signup`}
           >
-            SignUp
+            Sign Up
           </NavLink>
           <NavLink
             className="navigation__item"
             to={`${process.env.PUBLIC_URL}/login`}
           >
-            LogIn
+            Log In
           </NavLink>
         </>
       )}
