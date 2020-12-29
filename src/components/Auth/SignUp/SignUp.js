@@ -26,7 +26,6 @@ function SignUp() {
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
       history.push(`${process.env.PUBLIC_URL}`);
-      console.log("dupa");
     } catch {
       setError("Failed to create an account");
     }

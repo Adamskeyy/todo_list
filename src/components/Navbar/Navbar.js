@@ -28,7 +28,7 @@ function Navigation() {
             className="navigation__item"
             to={`${process.env.PUBLIC_URL}/logout`}
           >
-            Logout
+            Log Out
           </NavLink>
         </>
       ) : (
