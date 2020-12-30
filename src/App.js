@@ -22,9 +22,9 @@ import {
 import PrivateRoute from "./hoc/PrivateRoute";
 
 const App = () => {
-  const { token } = useAuth();
+  const { currentUser } = useAuth();
 
-  const routes = token ? (
+  const routes = currentUser ? (
     <Switch>
       <PrivateRoute
         exact

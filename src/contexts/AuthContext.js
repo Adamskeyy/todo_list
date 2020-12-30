@@ -8,7 +8,7 @@ export function useAuth() {
 }
 
 function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState("dsfdsf");
+  const [currentUser, setCurrentUser] = useState();
   const [userId, setUserId] = useState();
   const [token, setToken] = useState();
   const [loading, setLoading] = useState(true);

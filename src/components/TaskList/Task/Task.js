@@ -18,7 +18,7 @@ const Task = ({ task, removeTask, idx, toggleCompletion }) => {
       <span className="task__item__controls">
         <span
           className="task__item__controls__toggleCompletion"
-          onClick={() => toggleCompletion(task.id)}
+          onClick={() => toggleCompletion(task.id)} // task.taskId
         >
           {completionStatusText}
         </span>
