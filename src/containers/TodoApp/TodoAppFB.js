@@ -67,7 +67,6 @@ const TodoApp = () => {
         `https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos/${taskId}.json?auth=${token}`
       )
       .then((res) => {
-        console.log(res);
         const newTasks = tasks.filter((task) => task.taskId !== taskId);
         setTasks(newTasks);
       })
