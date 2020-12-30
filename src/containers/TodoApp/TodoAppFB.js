@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuid_v4 } from "uuid";
 import axios from "axios";
 
@@ -14,17 +14,12 @@ const TodoApp = () => {
   const [tasks, setTasks] = useState([]);
   const [defaultActiveFilter, setDefaultActiveFilter] = useState("all");
   const [enteredFilter, setEnteredFilter] = useState("");
-  const [loading, setLoading] = useState(true);
-  const inputRef = useRef();
+  const [loading, setLoading] = useState(false);
   const { token, userId } = useAuth();
 
-  // Get tasks from local storage if there are any
+  // Get tasks from Firebase
   useEffect(() => {
-    // const tasksFromLocalStorage = localStorage.getItem("tasks");
-    // if (tasksFromLocalStorage) {
-    //   setTasks(JSON.parse(tasksFromLocalStorage));
-    //   }
-
+    setLoading(true);
     if (token) {
       const queryParams = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
       axios
@@ -33,21 +28,16 @@ const TodoApp = () => {
             queryParams
         )
         .then((res) => {
-          setTasks(Object.values(res.data));
+          const fetchedTasks = Object.values(res.data).map((task, index) => ({
+            ...task,
+            taskId: Object.keys(res.data)[index],
+          }));
+          setTasks(fetchedTasks);
           setLoading(false);
         })
         .catch((err) => console.log(err));
     }
-  }, [token, userId, inputRef]);
-
-  // Set tasks in local storage anytime their numbers changes and reset filters if there are no tasks left
-  // useEffect(() => {
-  //   localStorage.setItem("tasks", JSON.stringify(tasks));
-  //   if (!tasks.length) {
-  //     setEnteredFilter("");
-  //     setDefaultActiveFilter("all");
-  //   }
-  // }, [tasks]);
+  }, [token, userId]);
 
   // Add Task
   const addTask = (task) => {
@@ -77,10 +67,13 @@ const TodoApp = () => {
         `https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos/${taskId}.json?auth=${token}`
       )
       .then((res) => {
+        console.log(res);
         const newTasks = tasks.filter((task) => task.taskId !== taskId);
         setTasks(newTasks);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // Delete selected tasks
@@ -121,7 +114,6 @@ const TodoApp = () => {
   if (tasks.length > 0) {
     searchTab = (
       <Search
-        ref={inputRef}
         defaultActiveFilter={defaultActiveFilter}
         changeActiveFilter={(filter) => setDefaultActiveFilter(filter)}
         enteredFilter={enteredFilter}
@@ -152,6 +144,11 @@ const TodoApp = () => {
       <Form addTask={addTask} />
       {searchTab}
       {filterWarning}
+      {/* <TaskList
+        tasks={itemsToDisplay}
+        removeTask={deleteTask}
+        toggleCompletion={toggleTask}
+      /> */}
       {!loading ? (
         <TaskList
           tasks={itemsToDisplay}

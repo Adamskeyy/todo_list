@@ -21,7 +21,7 @@ function LogOut() {
     logout();
   }, [logout]);
 
-  return <Redirect to={`${process.env.PUBLIC_URL}`} />;
+  return <Redirect to={`${process.env.PUBLIC_URL}/login`} />;
 }
 
 export default LogOut;

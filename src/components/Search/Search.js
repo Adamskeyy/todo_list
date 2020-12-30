@@ -1,20 +1,16 @@
-import React, { forwardRef, useEffect } from "react";
+import React from "react";
 
 import Input from "../Input/Input";
 import "./Search.css";
 import FilterButton from "../Buttons/FilterButton/FilterButton";
 
-const Search = forwardRef((props, ref) => {
+const Search = (props) => {
   const {
     enteredFilter,
     displayFilteredTasks,
     defaultActiveFilter,
     changeActiveFilter,
   } = props;
-
-  // useEffect(() => {
-  //   console.log(ref.current.value);
-  // }, [ref]);
 
   return (
     <>
@@ -26,7 +22,6 @@ const Search = forwardRef((props, ref) => {
         }}
       >
         <Input
-          ref={ref}
           value={enteredFilter}
           changeHandler={displayFilteredTasks}
           labelText="Find task..."
@@ -54,6 +49,6 @@ const Search = forwardRef((props, ref) => {
       </div>
     </>
   );
-});
+};
 
 export default Search;
