@@ -14,7 +14,7 @@ const TodoApp = () => {
   const [defaultActiveFilter, setDefaultActiveFilter] = useState("all");
   const [enteredFilter, setEnteredFilter] = useState("");
 
-  const { token } = useAuth();
+  const { token, userId } = useAuth();
 
   // Get tasks from local storage if there are any
   useEffect(() => {
@@ -22,16 +22,19 @@ const TodoApp = () => {
     // if (tasksFromLocalStorage) {
     //   setTasks(JSON.parse(tasksFromLocalStorage));
     //   }
-    axios
-      .get(
-        "https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos.json?auth=" +
-          token
-      )
-      .then((res) => {
-        setTasks(Object.values(res.data));
-      })
-      .catch((err) => console.log(err));
-  }, [token]);
+    if (token) {
+      const queryParams = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
+      axios
+        .get(
+          "https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos.json" +
+            queryParams
+        )
+        .then((res) => {
+          setTasks(Object.values(res.data));
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [token, userId]);
 
   // Set tasks in local storage anytime their numbers changes and reset filters if there are no tasks left
   useEffect(() => {
@@ -48,6 +51,7 @@ const TodoApp = () => {
       id: uuid_v4(),
       name: task,
       completed: false,
+      userId: userId,
     };
     axios
       .post(

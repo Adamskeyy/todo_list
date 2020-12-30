@@ -9,6 +9,7 @@ export function useAuth() {
 
 function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
+  const [userId, setUserId] = useState();
   const [token, setToken] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -40,10 +41,12 @@ function AuthProvider({ children }) {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoading(false);
-      user &&
+      if (user) {
         user.getIdToken(true).then((token) => {
           setToken(token);
         });
+        setUserId(user.uid);
+      }
     });
 
     return unsubscribe;
@@ -58,6 +61,7 @@ function AuthProvider({ children }) {
     updateEmail,
     updatePassword,
     token,
+    userId,
   };
 
   return (
