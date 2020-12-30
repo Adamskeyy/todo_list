@@ -1,21 +1,15 @@
 import React from "react";
 
-import "./Navbar.css";
+import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 
 import { useAuth } from "../../contexts/AuthContext";
 
 function Navigation() {
   const { currentUser } = useAuth();
+
   return (
     <ul className="navigation">
-      {/* <NavLink
-        exact
-        className="navigation__item"
-        to={`${process.env.PUBLIC_URL}`}
-      >
-        Task List
-      </NavLink> */}
       {currentUser ? (
         <>
           <NavLink

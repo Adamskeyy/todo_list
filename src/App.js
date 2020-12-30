@@ -1,8 +1,10 @@
+import { useEffect } from "react";
+
 import "./App.css";
 
 import { useAuth } from "./contexts/AuthContext";
 
-import Navigation from "./components/Navbar/Navbar";
+import Navigation from "./components/Navbar/Navigation";
 import SignUp from "./components/Auth/SignUp/SignUp";
 import LogIn from "./components/Auth/LogIn/LogIn";
 import LogOut from "./components/Auth/LogOut/LogOut.js";
@@ -23,6 +25,10 @@ import PrivateRoute from "./hoc/PrivateRoute";
 
 const App = () => {
   const { currentUser } = useAuth();
+
+  useEffect(() => {
+    console.log(currentUser);
+  }, [currentUser]);
 
   const routes = currentUser ? (
     <Switch>
