@@ -47,7 +47,7 @@ const TodoApp = () => {
 
   // Add Task
   const addTask = (task) => {
-    const newTask = {
+    let newTask = {
       id: uuid_v4(),
       name: task,
       completed: false,
@@ -60,15 +60,22 @@ const TodoApp = () => {
         newTask
       )
       .then((res) => {
+        newTask = { ...newTask, taskId: res.data.name };
         setTasks([...tasks, newTask]);
       })
       .catch((err) => console.log(err));
   };
 
   // Delete Task
-  const deleteTask = (id) => {
-    const newTasks = tasks.filter((task) => task.id !== id);
-    setTasks(newTasks);
+  const deleteTask = (taskId) => {
+    axios
+      .delete(
+        `https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos/${taskId}.json?auth=${token}`
+      )
+      .then((res) => {
+        const newTasks = tasks.filter((task) => task.taskId !== taskId);
+        setTasks(newTasks);
+      });
   };
 
   // Delete selected tasks

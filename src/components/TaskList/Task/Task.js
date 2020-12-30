@@ -24,7 +24,7 @@ const Task = ({ task, removeTask, idx, toggleCompletion }) => {
         </span>
         <span
           className="task__item__controls__remove"
-          onClick={() => removeTask(task.id)}
+          onClick={() => removeTask(task.taskId)}
         >
           X
         </span>
