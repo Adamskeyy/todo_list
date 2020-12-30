@@ -8,7 +8,7 @@ export function useAuth() {
 }
 
 function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState("dsfdsf");
   const [userId, setUserId] = useState();
   const [token, setToken] = useState();
   const [loading, setLoading] = useState(true);
@@ -39,9 +39,9 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
       setLoading(false);
       if (user) {
+        setCurrentUser(user);
         user.getIdToken(true).then((token) => {
           setToken(token);
         });
