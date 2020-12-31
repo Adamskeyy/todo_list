@@ -21,7 +21,7 @@ const TodoApp = () => {
 
   // Get tasks from Firebase on first render and everytime search input changes (after 0.5s delay to reduce number of requests)
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       if (enteredFilter === inputRef.current.value) {
         setLoading(true);
         if (token) {
@@ -50,6 +50,7 @@ const TodoApp = () => {
         }
       }
     }, 500);
+    return () => clearTimeout(timer);
   }, [token, userId, enteredFilter]);
 
   // Add Task
