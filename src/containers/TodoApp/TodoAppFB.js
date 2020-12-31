@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { v4 as uuid_v4 } from "uuid";
+import { useState, useEffect, useRef } from "react";
+// import { v4 as uuid_v4 } from "uuid";
 import axios from "axios";
-
+// import app from "../../firebase";
 import { useAuth } from "../../contexts/AuthContext";
 import "./TodoApp.css";
 import Form from "../../components/Form/Form";
@@ -17,32 +17,39 @@ const TodoApp = () => {
   const [loading, setLoading] = useState(false);
   const { token, userId } = useAuth();
 
-  // Get tasks from Firebase
+  const inputRef = useRef(enteredFilter);
+  // Get tasks from Firebase on first render and everytime search input changes (after 0.5s delay to reduce number of requests)
   useEffect(() => {
     setLoading(true);
     if (token) {
-      const queryParams = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
+      const usersTasksQuery = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
+      const queryParams =
+        enteredFilter.length === 0
+          ? usersTasksQuery
+          : `${usersTasksQuery}&orderBy="title"&equalTo="${enteredFilter}"`;
       axios
         .get(
           "https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos.json" +
             queryParams
         )
         .then((res) => {
-          const fetchedTasks = Object.values(res.data).map((task, index) => ({
-            ...task,
-            taskId: Object.keys(res.data)[index],
-          }));
+          const fetchedTasks = [];
+          for (const key in res.data) {
+            fetchedTasks.push({
+              taskId: key,
+              ...res.data[key],
+            });
+          }
           setTasks(fetchedTasks);
           setLoading(false);
         })
         .catch((err) => console.log(err));
     }
-  }, [token, userId]);
+  }, [token, userId, enteredFilter]);
 
   // Add Task
   const addTask = (task) => {
     let newTask = {
-      id: uuid_v4(),
       name: task,
       completed: false,
       userId: userId,
@@ -55,7 +62,9 @@ const TodoApp = () => {
       )
       .then((res) => {
         newTask = { ...newTask, taskId: res.data.name };
-        setTasks([...tasks, newTask]);
+        setTasks((tasks) => {
+          return [...tasks, newTask];
+        });
       })
       .catch((err) => console.log(err));
   };
@@ -77,6 +86,7 @@ const TodoApp = () => {
 
   // Delete selected tasks
   const deleteTasks = (selectedTasks) => {
+    // const tasksToDelete = [];
     const tasksLeft = [...tasks].filter(
       (item) => !selectedTasks.some((other) => item.id === other.id)
     );
@@ -84,8 +94,8 @@ const TodoApp = () => {
   };
 
   // Toggle completion state
-  const toggleTask = (id) => {
-    const index = tasks.findIndex((task) => task.id === id);
+  const toggleTask = (taskId) => {
+    const index = tasks.findIndex((task) => task.taskId === taskId);
     const updatedTasks = [...tasks];
     const toggledTask = { ...tasks[index] };
     toggledTask.completed = !toggledTask.completed;
@@ -143,11 +153,6 @@ const TodoApp = () => {
       <Form addTask={addTask} />
       {searchTab}
       {filterWarning}
-      {/* <TaskList
-        tasks={itemsToDisplay}
-        removeTask={deleteTask}
-        toggleCompletion={toggleTask}
-      /> */}
       {!loading ? (
         <TaskList
           tasks={itemsToDisplay}

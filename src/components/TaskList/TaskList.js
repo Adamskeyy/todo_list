@@ -7,7 +7,7 @@ const TaskList = ({ tasks, removeTask, toggleCompletion }) => {
     <ul className="task__list">
       {tasks.map((task, index) => (
         <Task
-          key={task.id}
+          key={task.taskId}
           task={task}
           removeTask={removeTask}
           toggleCompletion={toggleCompletion}
