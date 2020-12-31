@@ -1,19 +1,22 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import Input from "../Input/Input";
 import "./Search.css";
 import FilterButton from "../Buttons/FilterButton/FilterButton";
 
-const Search = (props) => {
+const Search = forwardRef((props, ref) => {
   const {
+    tasks,
     enteredFilter,
     displayFilteredTasks,
     defaultActiveFilter,
     changeActiveFilter,
   } = props;
 
+  const classList = tasks.length ? "search--visible" : "search--hidden";
+
   return (
-    <>
+    <div className={classList}>
       <form
         autoComplete="off"
         className="form"
@@ -22,6 +25,7 @@ const Search = (props) => {
         }}
       >
         <Input
+          ref={ref}
           value={enteredFilter}
           changeHandler={displayFilteredTasks}
           labelText="Find task..."
@@ -47,8 +51,8 @@ const Search = (props) => {
           clicked={() => changeActiveFilter("done")}
         />
       </div>
-    </>
+    </div>
   );
-};
+});
 
 export default Search;

@@ -1,3 +1,9 @@
+.search {
+  &--hidden {
+    display: none;
+  }
+}
+
 .filter {
   display: flex;
   justify-content: space-between;

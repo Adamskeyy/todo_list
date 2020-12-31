@@ -1,10 +1,13 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import "./Input.css";
 
-const Input = ({ value, changeHandler, labelText }) => {
+const Input = forwardRef((props, ref) => {
+  const { value, changeHandler, labelText } = props;
+
   return (
     <label htmlFor="input" className="form__label">
       <input
+        ref={ref}
         required
         type="text"
         className="form__input"
@@ -18,6 +21,6 @@ const Input = ({ value, changeHandler, labelText }) => {
       <span className="form__focusBg"></span>
     </label>
   );
-};
+});
 
 export default Input;

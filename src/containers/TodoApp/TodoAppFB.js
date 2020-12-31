@@ -17,34 +17,39 @@ const TodoApp = () => {
   const [loading, setLoading] = useState(false);
   const { token, userId } = useAuth();
 
-  const inputRef = useRef(enteredFilter);
+  const inputRef = useRef();
+
   // Get tasks from Firebase on first render and everytime search input changes (after 0.5s delay to reduce number of requests)
   useEffect(() => {
-    setLoading(true);
-    if (token) {
-      const usersTasksQuery = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
-      const queryParams =
-        enteredFilter.length === 0
-          ? usersTasksQuery
-          : `${usersTasksQuery}&orderBy="title"&equalTo="${enteredFilter}"`;
-      axios
-        .get(
-          "https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos.json" +
-            queryParams
-        )
-        .then((res) => {
-          const fetchedTasks = [];
-          for (const key in res.data) {
-            fetchedTasks.push({
-              taskId: key,
-              ...res.data[key],
-            });
-          }
-          setTasks(fetchedTasks);
-          setLoading(false);
-        })
-        .catch((err) => console.log(err));
-    }
+    setTimeout(() => {
+      if (enteredFilter === inputRef.current.value) {
+        setLoading(true);
+        if (token) {
+          const usersTasksQuery = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
+          const queryParams =
+            enteredFilter.length === 0
+              ? usersTasksQuery
+              : `${usersTasksQuery}&orderBy="title"&equalTo="${enteredFilter}"`;
+          axios
+            .get(
+              "https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos.json" +
+                queryParams
+            )
+            .then((res) => {
+              const fetchedTasks = [];
+              for (const key in res.data) {
+                fetchedTasks.push({
+                  taskId: key,
+                  ...res.data[key],
+                });
+              }
+              setTasks(fetchedTasks);
+              setLoading(false);
+            })
+            .catch((err) => console.log(err));
+        }
+      }
+    }, 500);
   }, [token, userId, enteredFilter]);
 
   // Add Task
@@ -104,9 +109,11 @@ const TodoApp = () => {
   };
 
   // Filtering tasks
-  const filteredTasks = tasks.filter((task) => {
-    return task.name.toLocaleLowerCase().includes(enteredFilter);
-  });
+  const filteredTasks =
+    tasks &&
+    tasks.filter((task) => {
+      return task.name.toLocaleLowerCase().includes(enteredFilter);
+    });
 
   let itemsToDisplay;
 
@@ -120,18 +127,21 @@ const TodoApp = () => {
 
   // Show searchbar if there is at least 1 task
   let searchTab, filterWarning, deleteBtn;
-  if (tasks.length > 0) {
-    searchTab = (
-      <Search
-        defaultActiveFilter={defaultActiveFilter}
-        changeActiveFilter={(filter) => setDefaultActiveFilter(filter)}
-        enteredFilter={enteredFilter}
-        displayFilteredTasks={(filter) =>
-          setEnteredFilter(filter.toLocaleLowerCase())
-        }
-      />
-    );
-  }
+  // if (tasks.length > 0) {
+
+  // }
+  searchTab = (
+    <Search
+      tasks={tasks}
+      ref={inputRef}
+      defaultActiveFilter={defaultActiveFilter}
+      changeActiveFilter={(filter) => setDefaultActiveFilter(filter)}
+      enteredFilter={enteredFilter}
+      displayFilteredTasks={(filter) =>
+        setEnteredFilter(filter.toLocaleLowerCase())
+      }
+    />
+  );
 
   // Show warning message if there are no matches found through filters and there are still tasks to display with different filters
   if (!itemsToDisplay.length && tasks.length) {
