@@ -92,11 +92,13 @@ const TodoApp = () => {
 
   // Delete Task
   const deleteTask = (taskId) => {
+    setLoading(true);
     axios
       .delete(
         `https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos/${taskId}.json?auth=${token}`
       )
       .then((res) => {
+        setLoading(false);
         const newTasks = tasks.filter((task) => task.taskId !== taskId);
         setTasks(newTasks);
       })
@@ -124,13 +126,20 @@ const TodoApp = () => {
     let completion = {
       completed: toggledTask.completed,
     };
+    setLoading(true);
     axios
       .patch(
         `https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos/${taskId}/.json?auth=${token}`,
         completion
       )
-      .then((res) => setTasks(updatedTasks))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        setLoading(false);
+        setTasks(updatedTasks);
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+      });
   };
 
   // Filtering tasks
@@ -188,16 +197,13 @@ const TodoApp = () => {
       <Form addTask={addTask} />
       {searchTab}
       {filterWarning}
-      {!loading ? (
-        <TaskList
-          tasks={itemsToDisplay}
-          removeTask={deleteTask}
-          toggleCompletion={toggleTask}
-        />
-      ) : (
-        <Spinner />
-      )}
-      {deleteBtn}
+      <TaskList
+        tasks={itemsToDisplay}
+        removeTask={deleteTask}
+        toggleCompletion={toggleTask}
+      />
+      {loading ? <Spinner /> : null}
+      {/* {deleteBtn} */}
     </div>
   );
 };
