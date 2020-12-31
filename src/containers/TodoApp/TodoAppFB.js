@@ -21,9 +21,9 @@ const TodoApp = () => {
 
   // Get tasks from Firebase on first render and everytime search input changes (after 0.5s delay to reduce number of requests)
   useEffect(() => {
+    setLoading(true);
     const timer = setTimeout(() => {
       if (enteredFilter === inputRef.current.value) {
-        setLoading(true);
         if (token) {
           const usersTasksQuery = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
           const queryParams =
@@ -46,12 +46,27 @@ const TodoApp = () => {
               setTasks(fetchedTasks);
               setLoading(false);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+              setLoading(false);
+              console.log(err);
+            });
         }
       }
     }, 500);
     return () => clearTimeout(timer);
   }, [token, userId, enteredFilter]);
+
+  // useEffect(() => {
+  //   const usersTasksQuery = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
+  //   if (tasks.length) {
+  //     axios
+  //       .get(
+  //         `https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos/.json${usersTasksQuery}`
+  //       )
+  //       .then((res) => console.log(res.data))
+  //       .catch((err) => console.log(err));
+  //   }
+  // }, [tasks, token, userId]);
 
   // Add Task
   const addTask = (task) => {
@@ -106,7 +121,16 @@ const TodoApp = () => {
     const toggledTask = { ...tasks[index] };
     toggledTask.completed = !toggledTask.completed;
     updatedTasks[index] = toggledTask;
-    setTasks(updatedTasks);
+    let completion = {
+      completed: toggledTask.completed,
+    };
+    axios
+      .patch(
+        `https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos/${taskId}/.json?auth=${token}`,
+        completion
+      )
+      .then((res) => setTasks(updatedTasks))
+      .catch((err) => console.log(err));
   };
 
   // Filtering tasks
