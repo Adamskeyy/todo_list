@@ -18,6 +18,11 @@ const TodoApp = () => {
   const { token, userId } = useAuth();
 
   const inputRef = useRef();
+  // const base_url = `${app.databaseURL}`;
+  // console.log(base_url);
+
+  const base_url =
+    "https://todo-development-7dfa4-default-rtdb.firebaseio.com/";
 
   // Get tasks from Firebase on first render and everytime search input changes (after 0.5s delay to reduce number of requests)
   useEffect(() => {
@@ -25,16 +30,13 @@ const TodoApp = () => {
     const timer = setTimeout(() => {
       if (enteredFilter === inputRef.current.value) {
         if (token) {
-          const usersTasksQuery = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
+          const usersTasksQuery = `/todos.json?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
           const queryParams =
             enteredFilter.length === 0
               ? usersTasksQuery
               : `${usersTasksQuery}&orderBy="title"&equalTo="${enteredFilter}"`;
           axios
-            .get(
-              "https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos.json" +
-                queryParams
-            )
+            .get(base_url + queryParams)
             .then((res) => {
               const fetchedTasks = [];
               for (const key in res.data) {
@@ -54,7 +56,7 @@ const TodoApp = () => {
       }
     }, 500);
     return () => clearTimeout(timer);
-  }, [token, userId, enteredFilter]);
+  }, [token, userId, enteredFilter, base_url]);
 
   // useEffect(() => {
   //   const usersTasksQuery = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
@@ -76,11 +78,7 @@ const TodoApp = () => {
       userId: userId,
     };
     axios
-      .post(
-        "https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos.json?auth=" +
-          token,
-        newTask
-      )
+      .post(`${base_url}/todos.json?auth=` + token, newTask)
       .then((res) => {
         newTask = { ...newTask, taskId: res.data.name };
         setTasks((tasks) => {

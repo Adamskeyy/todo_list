@@ -22,6 +22,7 @@ import {
 
 const App = () => {
   const { currentUser } = useAuth();
+  // const envPath = process.env.PUBLIC_URL;
 
   const routes = currentUser ? (
     <Switch>
@@ -49,7 +50,7 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <Router>
+      <Router basename="/todo_list">
         <Navigation />
         {routes}
       </Router>
