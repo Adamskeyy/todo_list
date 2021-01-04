@@ -26,20 +26,6 @@ const Form = ({ addTask }) => {
         changeHandler={setTask}
         labelText="Add the task samurai..."
       />
-      {/* <label htmlFor="input" className="form__label">
-        <input
-          required
-          type="text"
-          className="form__input"
-          placeholder="&nbsp;"
-          value={task}
-          onChange={(e) => {
-            setTask(e.target.value);
-          }}
-        />
-        <span className="form__spanLabel">Add the task samurai...</span>
-        <span className="form__focusBg"></span>
-      </label> */}
       <MainButton
         btnType="basic"
         btnContent="create new task_"

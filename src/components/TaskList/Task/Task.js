@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Task.css";
+import SmallSpinner from "../../SpinnerSmall/SpinnerSmall";
 
 const Task = ({ task, removeTask, idx, toggleCompletion }) => {
+  const [loading, setLoading] = useState(false);
+
   let completionStatusText, taskItemClasses;
   if (task.completed) {
     completionStatusText = "DONE";
@@ -11,24 +14,33 @@ const Task = ({ task, removeTask, idx, toggleCompletion }) => {
     taskItemClasses = "task__item";
   }
 
+  useEffect(() => {
+    setLoading(false);
+  }, [task]);
+
+  const handleToggle = () => {
+    setLoading(true);
+    toggleCompletion(task.taskId);
+  };
+
   return (
     <li className={taskItemClasses}>
-      <span className="task__item__content">{task.name}</span>
-      <span className="task__item__label">{idx + 1}</span>
-      <span className="task__item__controls">
-        <span
+      <div className="task__item__content">{task.name}</div>
+      <div className="task__item__label">{idx + 1}</div>
+      <div className="task__item__controls">
+        <div
           className="task__item__controls__toggleCompletion"
-          onClick={() => toggleCompletion(task.taskId)}
+          onClick={handleToggle}
         >
-          {completionStatusText}
-        </span>
-        <span
+          {loading ? <SmallSpinner /> : completionStatusText}
+        </div>
+        <div
           className="task__item__controls__remove"
           onClick={() => removeTask(task.taskId)}
         >
           X
-        </span>
-      </span>
+        </div>
+      </div>
     </li>
   );
 };

@@ -21,8 +21,7 @@ const TodoApp = () => {
   // const base_url = `${app.databaseURL}`;
   // console.log(base_url);
 
-  const base_url =
-    "https://todo-8951d-default-rtdb.europe-west1.firebasedatabase.app/";
+  const base_url = "https://todo-development-7dfa4-default-rtdb.firebaseio.com";
 
   // Get tasks from Firebase on first render and everytime search input changes (after 0.5s delay to reduce number of requests)
   useEffect(() => {
@@ -110,15 +109,15 @@ const TodoApp = () => {
     let completion = {
       completed: toggledTask.completed,
     };
-    setLoading(true);
+    // setLoading(true);
     axios
       .patch(`${base_url}/todos/${taskId}/.json?auth=${token}`, completion)
       .then((res) => {
-        setLoading(false);
+        // setLoading(false);
         setTasks(updatedTasks);
       })
       .catch((err) => {
-        setLoading(false);
+        // setLoading(false);
         console.log(err);
       });
   };

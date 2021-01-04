@@ -40,6 +40,8 @@
     align-items: center;
 
     &__toggleCompletion {
+      display: flex;
+      align-items: center;
       cursor: pointer;
     }
 

@@ -1,0 +1,60 @@
+.spinner--small {
+  display: inline-block;
+  position: relative;
+  --base-size: 30px;
+  width: var(--base-size);
+  height: var(--base-size);
+}
+
+.spinner--small__div {
+  display: inline-block;
+  position: absolute;
+  left: calc(var(--base-size) * 0.1);
+  width: calc(var(--base-size) * 0.15);
+  background: var(--blue-color);
+  -webkit-animation: spinner-small 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+          animation: spinner-small 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+.spinner--small__div:nth-child(1) {
+  left: calc(var(--base-size) * 0.1);
+  -webkit-animation-delay: -0.24s;
+          animation-delay: -0.24s;
+}
+
+.spinner--small__div:nth-child(2) {
+  left: calc(var(--base-size) * 0.4);
+  -webkit-animation-delay: -0.12s;
+          animation-delay: -0.12s;
+}
+
+.spinner--small__div:nth-child(3) {
+  left: calc(var(--base-size) * 0.7);
+  -webkit-animation-delay: 0;
+          animation-delay: 0;
+}
+
+@-webkit-keyframes spinner-small {
+  0% {
+    top: calc(var(--base-size) * 0.1);
+    height: calc(var(--base-size) * 0.8);
+  }
+  50%,
+  100% {
+    top: calc(var(--base-size) * 0.3);
+    height: calc(var(--base-size) * 0.4);
+  }
+}
+
+@keyframes spinner-small {
+  0% {
+    top: calc(var(--base-size) * 0.1);
+    height: calc(var(--base-size) * 0.8);
+  }
+  50%,
+  100% {
+    top: calc(var(--base-size) * 0.3);
+    height: calc(var(--base-size) * 0.4);
+  }
+}
+/*# sourceMappingURL=SpinnerSmall.css.map */

@@ -3,10 +3,10 @@ import "./Spinner.css";
 
 const Spinner = () => {
   return (
-    <div className="lds-facebook">
-      <div></div>
-      <div></div>
-      <div></div>
+    <div className="spinner">
+      <div className="spinner__div"></div>
+      <div className="spinner__div"></div>
+      <div className="spinner__div"></div>
     </div>
   );
 };

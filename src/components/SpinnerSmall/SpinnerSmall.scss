@@ -1,0 +1,86 @@
+.spinner--small {
+  display: inline-block;
+  position: relative;
+  --base-size: 30px;
+  width: var(--base-size);
+  height: var(--base-size);
+
+  &__div {
+    display: inline-block;
+    position: absolute;
+    left: calc(var(--base-size) * 0.1);
+    width: calc(var(--base-size) * 0.15);
+    background: var(--blue-color);
+    animation: spinner-small 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  }
+
+  &__div:nth-child(1) {
+    left: calc(var(--base-size) * 0.1);
+    animation-delay: -0.24s;
+  }
+
+  &__div:nth-child(2) {
+    left: calc(var(--base-size) * 0.4);
+    animation-delay: -0.12s;
+  }
+
+  &__div:nth-child(3) {
+    left: calc(var(--base-size) * 0.7);
+    animation-delay: 0;
+  }
+}
+
+@keyframes spinner-small {
+  0% {
+    top: calc(var(--base-size) * 0.1);
+    height: calc(var(--base-size) * 0.8);
+  }
+  50%,
+  100% {
+    top: calc(var(--base-size) * 0.3);
+    height: calc(var(--base-size) * 0.4);
+  }
+}
+
+// .spinner--small {
+//   display: inline-block;
+//   position: relative;
+//   width: 6em;
+//   height: 6em;
+
+//   div {
+//     display: inline-block;
+//     position: absolute;
+//     left: 0.5em;
+//     width: 1em;
+//     background: var(--blue-color);
+//     animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+//   }
+
+//   div:nth-child(1) {
+//     left: 0.5em;
+//     animation-delay: -0.24s;
+//   }
+
+//   div:nth-child(2) {
+//     left: 2em;
+//     animation-delay: -0.12s;
+//   }
+
+//   div:nth-child(3) {
+//     left: 3.5em;
+//     animation-delay: 0;
+//   }
+// }
+
+// @keyframes lds-facebook {
+//   0% {
+//     top: 0.5em;
+//     height: 4em;
+//   }
+//   50%,
+//   100% {
+//     top: 1.5em;
+//     height: 2em;
+//   }
+// }
