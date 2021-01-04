@@ -22,7 +22,7 @@ const TodoApp = () => {
   // console.log(base_url);
 
   const base_url =
-    "https://todo-development-7dfa4-default-rtdb.firebaseio.com/";
+    "https://todo-8951d-default-rtdb.europe-west1.firebasedatabase.app/";
 
   // Get tasks from Firebase on first render and everytime search input changes (after 0.5s delay to reduce number of requests)
   useEffect(() => {
@@ -58,18 +58,6 @@ const TodoApp = () => {
     return () => clearTimeout(timer);
   }, [token, userId, enteredFilter, base_url]);
 
-  // useEffect(() => {
-  //   const usersTasksQuery = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
-  //   if (tasks.length) {
-  //     axios
-  //       .get(
-  //         `https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos/.json${usersTasksQuery}`
-  //       )
-  //       .then((res) => console.log(res.data))
-  //       .catch((err) => console.log(err));
-  //   }
-  // }, [tasks, token, userId]);
-
   // Add Task
   const addTask = (task) => {
     let newTask = {
@@ -92,9 +80,7 @@ const TodoApp = () => {
   const deleteTask = (taskId) => {
     setLoading(true);
     axios
-      .delete(
-        `https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos/${taskId}.json?auth=${token}`
-      )
+      .delete(`${base_url}/todos/${taskId}.json?auth=${token}`)
       .then((res) => {
         setLoading(false);
         const newTasks = tasks.filter((task) => task.taskId !== taskId);
@@ -126,10 +112,7 @@ const TodoApp = () => {
     };
     setLoading(true);
     axios
-      .patch(
-        `https://todo-development-7dfa4-default-rtdb.firebaseio.com/todos/${taskId}/.json?auth=${token}`,
-        completion
-      )
+      .patch(`${base_url}/todos/${taskId}/.json?auth=${token}`, completion)
       .then((res) => {
         setLoading(false);
         setTasks(updatedTasks);
