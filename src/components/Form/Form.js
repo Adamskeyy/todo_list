@@ -10,9 +10,12 @@ const Form = ({ addTask }) => {
 
   const submitTask = (e) => {
     e.preventDefault();
-    if (task) {
+    if (task && /\S/.test(String(task))) {
       addTask(task);
       setTask("");
+    } else {
+      console.log("Whitespace is not a valid input!");
+      // alert/modal/text above input
     }
   };
 

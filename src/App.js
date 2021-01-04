@@ -50,7 +50,7 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <Router basename="/todo_list">
+      <Router>
         <Navigation />
         {routes}
       </Router>

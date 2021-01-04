@@ -32,9 +32,11 @@ function UpdateProfile() {
     Promise.all(promises)
       .then(() => {
         history.push(`${process.env.PUBLIC_URL}/profile`);
+        // alert/modal/text above input
       })
       .catch(() => {
         setError("Failed to update account");
+        // dokładniej
       })
       .finally(() => {
         setLoading(false);
