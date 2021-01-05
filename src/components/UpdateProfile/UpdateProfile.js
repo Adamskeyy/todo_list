@@ -9,6 +9,7 @@ function UpdateProfile() {
   const passwordConfirmRef = useRef();
   const { currentUser, updatePassword, updateEmail } = useAuth();
   const [error, setError] = useState("");
+  // const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
@@ -32,7 +33,7 @@ function UpdateProfile() {
     Promise.all(promises)
       .then(() => {
         history.push(`${process.env.PUBLIC_URL}/profile`);
-        // alert/modal/text above input
+        // setMessage("Successfully updated account");
       })
       .catch(() => {
         setError("Failed to update account");
@@ -49,6 +50,7 @@ function UpdateProfile() {
         <Card.Body>
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
+          {/* {message && <Alert variant="success">{message}</Alert>} */}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>

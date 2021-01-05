@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Task.css";
-import SmallSpinner from "../../SpinnerSmall/SpinnerSmall";
+import SmallSpinner from "../../UI/SpinnerSmall/SpinnerSmall";
 
 const Task = ({ task, removeTask, idx, toggleCompletion }) => {
   const [loading, setLoading] = useState(false);

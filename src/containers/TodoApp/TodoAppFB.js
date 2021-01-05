@@ -8,20 +8,27 @@ import Form from "../../components/Form/Form";
 import TaskList from "../../components/TaskList/TaskList";
 import Search from "../../components/Search/Search";
 import MainButton from "../../components/Buttons/MainButton/MainButton";
-import Spinner from "../../components/Spinner/Spinner";
+import Spinner from "../../components/UI/Spinner/Spinner";
+import Modal from "../../components/UI/Modal/Modal";
 
 const TodoApp = () => {
   const [tasks, setTasks] = useState([]);
   const [defaultActiveFilter, setDefaultActiveFilter] = useState("all");
   const [enteredFilter, setEnteredFilter] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const { token, userId } = useAuth();
 
   const inputRef = useRef();
   // const base_url = `${app.databaseURL}`;
   // console.log(base_url);
 
-  const base_url = "https://todo-development-7dfa4-default-rtdb.firebaseio.com";
+  const handleModalClicked = () => {
+    setShowModal(false);
+  };
+
+  const base_url =
+    "https://todo-8951d-default-rtdb.europe-west1.firebasedatabase.app/";
 
   // Get tasks from Firebase on first render and everytime search input changes (after 0.5s delay to reduce number of requests)
   useEffect(() => {
@@ -68,6 +75,7 @@ const TodoApp = () => {
       .post(`${base_url}/todos.json?auth=` + token, newTask)
       .then((res) => {
         newTask = { ...newTask, taskId: res.data.name };
+        setShowModal(true);
         setTasks((tasks) => {
           return [...tasks, newTask];
         });
@@ -174,6 +182,9 @@ const TodoApp = () => {
 
   return (
     <div className="TodoApp">
+      <Modal show={showModal} modalClosed={handleModalClicked}>
+        Created new task
+      </Modal>
       <Form addTask={addTask} />
       {searchTab}
       {filterWarning}
